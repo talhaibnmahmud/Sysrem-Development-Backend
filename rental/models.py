@@ -16,7 +16,7 @@ class Division(models.Model):
 
 class District(models.Model):
     name = models.CharField(null=False, blank=False, max_length=15)
-    division = models.ForeignKey(Division, on_delete=models.SET_NULL, null=True)
+    division = models.ForeignKey(Division, on_delete=models.SET_NULL, null=True, editable=False)
     latitude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)
 

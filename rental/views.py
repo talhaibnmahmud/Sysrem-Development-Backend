@@ -2,8 +2,8 @@ from django.http import JsonResponse
 from django.views.generic import ListView
 from rest_framework import viewsets
 
-from .models import Division, District
-from .serializers import AreaSerializer, DistrictSerializer
+from rental.models import Division, District
+from rental.serializers import AreaSerializer, DistrictSerializer
 
 
 # Create your views here.
@@ -17,13 +17,13 @@ class RentalListView(ListView):
 
         for division in divisions:
             district = districts.filter(division=division)
-            dis = [i.name for i in district]
+            dis = [(i.name, i.id) for i in district]
             items[division.name] = dis
 
         return JsonResponse(items)
 
 
-class AreaViewSet(viewsets.ModelViewSet):
+class DivisionViewSet(viewsets.ModelViewSet):
     queryset = Division.objects.all()
     serializer_class = AreaSerializer
 
