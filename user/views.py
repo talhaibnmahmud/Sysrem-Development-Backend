@@ -28,9 +28,9 @@ from user.signals import user_saved
 
 
 class RegistrationAPI(generics.CreateAPIView):
-    permission_classes = (permissions.AllowAny,)
-    serializer_class = UserSerializer
-    queryset = User.objects.all()
+    permission_classes  = (permissions.AllowAny,)
+    serializer_class    = UserSerializer
+    queryset            = User.objects.all()
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -46,7 +46,7 @@ class RegistrationAPI(generics.CreateAPIView):
             return Response({
                 'user': UserSerializer(user, context=self.get_serializer_context()).data,
                 'token': AuthToken.objects.create(user)[1]
-            }, status=201)
+            }, status=201,)
 
         return Response({
             'error': 'Could not create user. Please check your data again',

@@ -11,13 +11,13 @@ user_saved = Signal()
 def customer_profile(sender, instance, created, *args, **kwargs):
 
     if created:
-        group = Group.objects.get(name='Customer')
+        group   = Group.objects.get(name='Customer')
         instance.groups.add(group)
 
-        data = kwargs['data']
-        name = f'{data["first_name"]} {data["last_name"]}'
-        email = data['email']
-        phone = data['phone']
+        data    = kwargs['data']
+        name    = f'{data["first_name"]} {data["last_name"]}'
+        email   = data['email']
+        phone   = data['phone']
 
         Customer.objects.create(
             user=instance,
