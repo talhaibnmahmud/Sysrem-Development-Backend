@@ -7,10 +7,20 @@ from contact.serializers import ContactSerializer
 
 # Create your views here.
 class ContactView(CreateAPIView):
-    permission_classes = (permissions.AllowAny,)
-    serializer_class = ContactSerializer
+    permission_classes  = (permissions.AllowAny,)
+    serializer_class    = ContactSerializer
 
     def post(self, request, *args, **kwargs):
+        # if request.user:
+            # print(request.user)
+            # print(request.query_params)
+            # print(request.auth)
+            # print(request.authenticators)
+            # print(request.method)
+            # print(request.content_type)
+            # print(request.stream)
+            # print(request.META)
+            # print(request.session)
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             contact = serializer.save()
